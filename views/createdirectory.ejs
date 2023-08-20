@@ -1,0 +1,325 @@
+<html lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  
+	<!-- Bootstrap -->
+	<link href="../../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="../../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- NProgress -->
+	<link href="../../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="../../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	<!-- bootstrap-wysiwyg -->
+	<link href="../../../../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+	<!-- Select2 -->
+	<link href="../../../../vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+	<!-- Switchery -->
+	<link href="../../../../vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+	<!-- starrr -->
+	<link href="../../../../vendors/starrr/dist/starrr.css" rel="stylesheet">
+	<!-- bootstrap-daterangepicker -->
+	<link href="../../../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<!-- Custom Theme Style -->
+	
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+	<link href="../../../../build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+ 
+<style>
+.geocoder {
+position: absolute;
+z-index: 1;
+width: 50%;
+left: 50%;
+margin-left: -25%;
+top: 10px;
+}
+.mapboxgl-ctrl-geocoder {
+min-width: 100%;
+}
+#map {
+margin-top: 75px;
+}
+</style>
+	<div class="container body">
+		<div class="main_container">
+            <%- include ('./partials/sidebar') %>
+            <!-- top navigation -->
+            <%- include ('./partials/header') %>
+			<!-- /top navigation -->
+
+			<!-- page content -->
+			<div class="right_col" role="main">
+                
+				<div class="">
+					<div class="container-fluid">
+                        <div class="page-header min-height-100 border-radius-xl mt-4" style="background-image: url('../../../../assets/img/curved-images/sds.jpg'); background-position-y: 50%;">
+                          <span class="mask  opacity-6"></span>
+                          <div >
+                            <nav aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Manage Directories</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Create Directories</li>
+                              </ol>
+                            </nav>
+                          </div>
+                        </div>
+                      
+                      </div>
+					<div class="clearfix"></div>
+					<div class="row">
+                        <%- include ('./partials/messages')%>
+						<div class="col-md-12 col-sm-12 ">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Create Directories</h2>
+									
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<br />
+									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/directories/createdirectories" method="post">
+										
+										
+											<div class="">
+																	
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bname">Business Name:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bname" name="bname" class="form-control">
+												</div>
+											</div>
+									
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bplace">Business Place/Address:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bplace" name="bplace" class="form-control">
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bcontact">Contact Info:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bcontact" name="bcontact" class="form-control">
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="boverview">Business Overview Info:</label>
+												<div class="col-md-6 col-sm-6">
+													<textarea type="text" id="boverview" name="boverview" class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="baboutus">About Info:</label>
+												<div class="col-md-6 col-sm-6">
+													<textarea type="text" id="baboutus" name="baboutus" class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bservice">Service Info:</label>
+												<div class="col-md-6 col-sm-6">
+													<textarea type="text" id="bservice" name="bservice" class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bwewurl">Website URL:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bwewurl" name="bwewurl" class="form-control">
+												</div>
+											</div>
+									
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bworkinghours">Working Hours:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bworkinghours" name="bworkinghours" class="form-control">
+												</div>
+											</div>
+									
+											
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Directory Category:<span class="required">*</span>
+												</label>
+												<div class="col-md-6 col-sm-6 ">
+													<select class="form-control" name="directorycategory" id="directorycategory">
+														<option value="0">Select Category</option>
+														<option value="tvet">TVET College</option>
+														<option value="govt">Government Agencies</option>
+														<option value="nongovt">Non Gevernmental Org.</option>
+														
+														
+													</select></div>
+											</div>
+											
+											</div>
+										
+										
+											<!-- Add more fields based on your model -->
+									
+											 
+											<div class="col-md-8 offset-md-2">
+												<label class="mb-5">Job Location</label>
+											
+												<input type="hidden" name="latitude" id="latitude">
+												<input type="hidden" name="logtiude" id="logtiude">
+												
+												<div id="map"  style="width: 100%; height: 150px;"></div>
+											
+												<div id="geocoder" class="geocoder"></div>
+	 
+												<script>
+												
+													mapboxgl.accessToken = 'pk.eyJ1IjoiYWJpbmV0MTIzIiwiYSI6ImNrbWR3d3Y5NzJwbG8ycGp4bGU1bXBtaGsifQ.LIZpH0mev90pUGXewX6lww';
+													const map = new mapboxgl.Map({
+														container: 'map',
+														style: 'mapbox://styles/mapbox/streets-v12',
+														center: [38.7436, 9.0132], // Default center
+														zoom: 15
+													});
+													// Add the control to the map.
+	const geocoder = new MapboxGeocoder({
+	accessToken: mapboxgl.accessToken,
+	mapboxgl: mapboxgl,
+	countries: 'ET', // Restrict results to Ethiopia
+		bbox: [32.95418, 3.38388, 47.98238, 14.95943] 
+	});
+	 
+	document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+	let currentMarker = null; // Variable to keep track of the current marker
+	
+	map.on('click', (e) => {
+		const { lng, lat } = e.lngLat;
+		const lati = document.getElementById('latitude');
+		const longs = document.getElementById('logtiude');
+	   // coordinatesDiv.innerHTML = `Latitude: ${lat.toFixed(4)}<br>Longitude: ${lng.toFixed(4)}`;
+		 lati.value = lat;
+		 longs.value = lng;
+		 if (currentMarker) {
+			currentMarker.remove();
+		}
+		 const marker = new mapboxgl.Marker()
+			.setLngLat([lng, lat])
+			.addTo(map);
+			const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
+			.setHTML('OFFICE LOCATION')
+			.addTo(map);
+	
+		// Attach the popup to the marker
+		marker.setPopup(popup);
+		currentMarker = marker;
+	 
+	});
+													if ("geolocation" in navigator) {
+														navigator.geolocation.getCurrentPosition(position => {
+															const userLocation = [position.coords.longitude, position.coords.latitude];
+															map.setCenter(userLocation);
+														});
+													} else {
+														console.log("Geolocation is not available in this browser.");
+													}
+													</script>
+											</div>
+										
+
+									
+								</div>
+							</div>
+							<div class="ln_solid"></div>
+										<div class="item form-group">
+											<div class="col-md-6 col-sm-6 offset-md-3">
+												
+												<button type="submit" class="btn btn-success btn-block">Submit</button>
+											</div>
+										</div>
+									</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- /page content -->
+
+			<!-- footer content -->
+		<%- include ('./partials/footer')%>
+			<!-- /footer content -->
+		</div>
+	</div>
+	<script>
+		var value = $('#value').val()
+	 
+	   $('textarea#bservice').summernote('pasteHTML', value);
+   
+	  </script>
+  <script>
+	$(document).ready(function() {
+	$('#summernote').summernote({
+	  toolbar:[
+  
+		// This is a Custom Button in a new Toolbar Area
+		['custom', ['examplePlugin']],
+  
+		// You can also add Interaction to an existing Toolbar Area
+		['style', ['style' ,'examplePlugin']]
+	  ]
+	});
+  });
+  $('.summernote').summernote({
+	height: 300,   //set editable area's height
+	codemirror: { // codemirror options
+	  theme: 'monokai'
+	}
+  });
+  </script>
+	<!-- jQuery -->
+	<script src="../../../../vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../../../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- FastClick -->
+	<script src="../../../../vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="../../../../vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="../../../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- iCheck -->
+	<script src="../../../../vendors/iCheck/icheck.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../../../../vendors/moment/min/moment.min.js"></script>
+	<script src="../../../../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script src="../../../../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script src="../../../../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="../../../../vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script src="../../../../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script src="../../../../vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="../../../../vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script src="../../../../vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script src="../../../../vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script src="../../../../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="../../../../vendors/starrr/dist/starrr.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../../../../build/js/custom.min.js"></script>
+
+</body></html>

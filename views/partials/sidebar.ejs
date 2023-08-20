@@ -1,0 +1,98 @@
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+      <div class="navbar nav_title" style="border: 0;">
+        <a href="/dashboard" class="site_title"> <span>TVETPATHWAYS</span></a>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <!-- menu profile quick info -->
+      <div class="profile clearfix">
+        <div class="profile_pic">
+          <img src="../../../images/img.jpg" alt="..." class="img-circle profile_img">
+        </div>
+        <div class="profile_info">
+          <span>Welcome,</span>
+          <h2><%= user.username %></h2>
+        </div>
+      </div>
+      <!-- /menu profile quick info -->
+
+      <br />
+
+      <!-- sidebar menu -->
+      <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+        <div class="menu_section">
+          <h3>General</h3>
+          <ul class="nav side-menu">
+            <li><a><i class="fa fa-home"></i> Manage Users <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/users/createuser">Create System Users</a></li>
+                <li><a href="/users/userlist">Users List</a></li>
+              
+              </ul>
+            </li>
+            <li><a><i class="fa fa-edit"></i> Manage Directories <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/directories/createdirectory">Create Directories</a></li>
+                <li><a href="/directories/directorylist">Directories List</a></li>
+               
+              </ul>
+            </li>
+            <li><a><i class="fa fa-desktop"></i> Manage NEWS <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+              
+                <li><a href="/news/createnews">Add NEWS</a></li>
+                <li><a href="/news/newslist">Previous News List</a></li>
+             
+              </ul>
+            </li>
+            <li><a><i class="fa fa-table"></i> Manage  ADs <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/ads/createnewads">Add New ADs </a></li>
+                <li><a href="/ads/adslist">Previous ADs List </a></li>
+              </ul>
+            </li>
+            <li><a><i class="fa fa-clone"></i> Manage BLOG <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/blog/createblog">Add New BLOG</a></li>
+                <li><a href="/blog/bloglist">Previous BLOG List</a></li>
+                           </ul>
+            </li>
+            <li><a><i class="fa fa-clone"></i>Manage Job <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="/jobs/createjob">Add New Job</a></li>
+                <li><a href="/jobs/joblist">Previous Job List</a></li>
+              </ul>
+            </li>
+            <li><a><i class="fa fa-clone"></i>Manage Job Applicants <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/applicant/createapplicant">Add New Applicant</a></li>
+                  <li><a href="/applicant/applicantlist">Previous Applicant List</a></li>
+                  <li><a href="/applicant/filterapplicant">Filter Applicant List</a></li>
+                </ul>
+              </li>
+            <li><a><i class="fa fa-bar-chart-o"></i>Manage Reports <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li><a href="/report/jobreprot">Job Report</a></li>
+                  <li><a href="/report/newsreport">News Report</a></li>
+                  <li><a href="/report/applicantreport">Applicant Report</a></li>
+                </ul>
+              </li>
+              <li><a><i class="fa fa-cogs"></i>Manage Configuration <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li><a href="/config/createnewstagorcategroy">Create News Tag/Category</a></li>
+                  <li><a href="/config/mainsubjobcategory">Create Job Categories</a></li>
+                </ul>
+              </li>
+          </ul>
+        </div>
+      
+      </div>
+      <!-- /sidebar menu -->
+
+      <!-- /menu footer buttons -->
+     
+      <!-- /menu footer buttons -->
+    </div>
+  </div>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   
+    <!-- Bootstrap -->
+    <link href="../../../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+   <link href="../../../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../../../../build/css/custom.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <%- include ('./partials/sidebar') %>
+            <!-- top navigation -->
+            <%- include ('./partials/header') %>
+			<!-- /top navigation -->
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="container-fluid">
+                <div class="page-header min-height-100 border-radius-xl mt-4" style="background-image: url('../../../../assets/img/curved-images/sds.jpg'); background-position-y: 50%;">
+                  <span class="mask  opacity-6"></span>
+                  <div >
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Manage Job Applicants</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Previous Applicant List</li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+              
+              </div>
+            <div class="clearfix"></div>
+
+            <div class="row" style="display: block;">
+            
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Applicant List</h2>
+                   
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <%- include ('./partials/messages')%>
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action datatable">
+                        <thead>
+                          <tr class="headings">
+                            <th>#</th>
+                            <th class="column-title">Applicant Info </th>
+                            <th class="column-title">Contact Info </th>
+                            <th class="column-title">Address </th>
+                            <th class="column-title">Education Info </th>
+                            <th class="column-title">Action ToDo</th>
+                            
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        
+                       <% if(applicantlist.length >0){%>
+                        <% var i =0 %>
+                       <% applicantlist.forEach(function (row){%>
+                        <tr class="even pointer">
+                           <% i++ %>
+                           <td><%= i++ %></td>
+                            <td class=" "><%= row.fullname %><br>
+                                <%= row.gender %><br>
+                                <%= row.age %><br>
+                            </td>
+                            <td class=" "><%= row.phoneNumber %></td>
+                            
+                            <td class=" "><%= row.address %></td>
+                            <td class=" "><%= row.profession %><br>
+                                <%= row.experience %><br>
+                                <%= row.expertiseLevel %><br>
+                             </td>
+                        
+                           
+                            <td class=" last">
+                                <form action="/applicant/deleteapplicant/<%= row.applicantid %>" method="post">
+                                    <button class="btn btn-outline-danger btn-sm btn-block">Delete</button>
+                                 </form>
+                               
+                            </td>
+                          </tr>
+                       <% })}else{%>
+                        <tr>
+                            <div class="alert alert-warning alert-dismissible " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Error!</strong> No Applicant Found!
+                              </div>
+                        </tr>
+                       <% }%>
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+      <%- include ('./partials/footer')%>
+        <!-- /footer content -->
+      </div>
+    </div>
+  
+    
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable();
+        });
+    </script>
+    <!-- jQuery -->- 
+    <script src="../../../../../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+   <script src="../../../../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../../../../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../../../../vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../../../../../vendors/iCheck/icheck.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../../../../../build/js/custom.min.js"></script>
+  </body>
+</html>
