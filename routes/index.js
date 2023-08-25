@@ -11,7 +11,26 @@ router.get('/', forwardAuthenticated, async (req, res) =>{
 res.render('login',{});
 });
 router.get('/dashboard', ensureAuthenticated, async (req, res) =>{
-    res.render('index',{user:req.user});
+
+    const [jobappn,metajoball] = await db.sequelize.query (`
+    select subcategories.subcatname,count(appid) as count from jobapplications inner join subcategories 
+    on jobapplications.subcategory = subcategories.subcatid
+    group by subcategories.subcatname
+ 
+    `)
+    const [subscriber,submeta] = await db.sequelize.query (`
+    select subcategories.subcatname,count(subcategories.id) as count from sendsmsmessages inner join subcategories 
+    on sendsmsmessages.subcatname = subcategories.subcatid
+    group by subcategories.subcatname
+ 
+    `)
+    const [applicant,appmeta] = await db.sequelize.query (`
+    select subcategories.subcatname,count(applicantid) as count from applicants inner join subcategories 
+    on applicants.subcategory = subcategories.subcatid
+    group by subcategories.subcatname
+ 
+    `)
+    res.render('index',{user:req.user,jobappn:jobappn,subscriber:subscriber,applicant:applicant});
     });
               
                                 

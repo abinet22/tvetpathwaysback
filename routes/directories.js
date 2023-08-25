@@ -8,31 +8,34 @@ const path = require("path");
 const Op = db.Sequelize.Op;
 const { v4: uuidv4 } = require('uuid');
 router.get('/createdirectory', ensureAuthenticated, async (req, res) =>{
-    
-res.render('createdirectory',{user:req.user});
+  const subcategory = await db.Subcategory.findAll({}) 
+res.render('createdirectory',{user:req.user,subcategory:subcategory});
 });
 router.get('/directorylist', ensureAuthenticated, async (req, res) =>{
 const directory = await db.BusinessDirectory.findAll({});
-res.render('directorylist',{user:req.user,directory:directory});
+const subcategory = await db.Subcategory.findAll({})
+res.render('directorylist',{user:req.user,directory:directory,subcategory:subcategory});
 });
 router.post('/createdirectories', ensureAuthenticated, async (req, res) =>{
-    const {bname,bplace,bcontact,boverview,baboutus,bservice,bwewurl,bworkinghours,directorycategory,latitude,logtiude} =req.body;
-    
+    const {bname,bplace,bcontact,boverview,baboutus,bservice,bwewurl,bworkinghours,directorycategory,latitude,logtiude,
+      topoccupations,ratting,region
+    } =req.body;
+    const subcategory = await db.Subcategory.findAll({})
      let errors =[];
      if(directorycategory === "0"){
-       errors.push({msg:'Please select user roll'}) 
+       errors.push({msg:'Please select directory type'}) 
      }
   
-     if(!bname ||!bplace ||!bcontact ||!boverview||!baboutus||!bservice ||!bwewurl||!bworkinghours||!directorycategory){
+     if(!topoccupations ||!ratting ||!region || !bname ||!bplace ||!bcontact ||!boverview ||!latitude ||!logtiude ||!baboutus||!bservice ||!bwewurl||!bworkinghours||!directorycategory){
        errors.push({msg:'Please enter all required fields'}) 
      }
      if(errors.length>0){
-       res.render('createdirectory',{errors,user:req.user});  
+       res.render('createdirectory',{errors,user:req.user,subcategory:subcategory});  
      }
      else{
        const dirData ={
         bdid: uuidv4(),
-    
+        topoccupations:topoccupations,ratting:ratting,region:region,
         bname:bname,
         bplace: bplace,
         lon:logtiude,
@@ -48,14 +51,15 @@ router.post('/createdirectories', ensureAuthenticated, async (req, res) =>{
        }
        db.BusinessDirectory.create(dirData).then(usernew =>{
         if(usernew){
-           res.render('createdirectory',{user:req.user,success_msg:'Successfully Created'});   }else{
-           res.render('createdirectory',{user:req.user,error_msg:'Error while creating business directory'});  }
+           res.render('createdirectory',{user:req.user,success_msg:'Successfully Created',subcategory:subcategory});   }else{
+           res.render('createdirectory',{user:req.user,error_msg:'Error while creating business directory',subcategory:subcategory});  }
           }).catch(err =>{
-           res.render('createdirectory',{user:req.user,error_msg:'Cant create directory now please try again'});  })
+           res.render('createdirectory',{user:req.user,error_msg:'Cant create directory now please try again',subcategory:subcategory});  })
      }
    });
    router.post('/deletedirectory/(:bdid)', ensureAuthenticated, async function(req, res){
     const directory = await db.BusinessDirectory.findAll({});
+    const subcategory = await db.Subcategory.findAll({})
     db.BusinessDirectory.findOne({where:{bdid:req.params.bdid}}).then(npid =>{
    if(npid){
     db.BusinessDirectory.destroy({where:{bdid:req.params.bdid}}).then(dtnew =>{

@@ -19,6 +19,9 @@
 
     <!-- Custom Theme Style -->
     <link href="../../../../../build/css/custom.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
   </head>
 
   <body class="nav-md">
@@ -40,8 +43,8 @@
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Manage Directories</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Directories List</li>
+                        <li class="breadcrumb-item"><a href="#">Manage Subscriptions</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Send Me SMS</li>
                       </ol>
                     </nav>
                   </div>
@@ -55,7 +58,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Directories List</h2>
+                    <h2>Contact Us List</h2>
                    
                     <div class="clearfix"></div>
                   </div>
@@ -63,47 +66,43 @@
                   <div class="x_content">
                     <%- include ('./partials/messages')%>
                     <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action">
+                      <table class="table table-striped jambo_table bulk_action datatable">
                         <thead>
                           <tr class="headings">
-                         <th>#</th>
-                            <th class="column-title">Business Name </th>
-                            <th class="column-title">Address </th>
-                            <th class="column-title">Overview </th>
-                            <th class="column-title">Top Occupations </th>
-                            <th class="column-title">Rating </th>
-                            <th class="column-title">Action ToDo</th>
+                            <th>#</th>
+                            <th class="column-title">Send SMS JOb Alert To Phone Number </th>
+                           
+                            <th class="column-title">When Job Is </th>
+                          
+                            <th class="column-title">Around This Location</th>
                             
                           </tr>
                         </thead>
 
                         <tbody>
                         
-                       <% if(directory.length >0){%>
-                        <% var i=0 %>
-                       <% directory.forEach(function (row){%>
-                        <% i++%>
+                       <% if(smsmsg.length >0){%>
+                        <% var i =0 %>
+                       <% smsmsg.forEach(function (row){%>
                         <tr class="even pointer">
-                            <td><%= i %></td>
-                            <td class=" "><%= row.bname %></td>
-                            <td class=" "><%= row.bplace %> <br> <%= row.bcontact %></td>
-                            <td class=" "><%= row.boverview %> </td>
-                            <td class=" "><%= row.topoccupations %></td>
-                            <td class=" "><%= row.ratting %></td>
+                           <% i++ %>
+                           <td><%= i++ %></td>
+                            <td class=" "><%= row.phonenumber %><br>
+                              
+                            </td>
+                            <td class=" "><%= row.subcatname %></td>
+                            
+                            <td class=" "><%= row.location %></td>
+                          
                         
                            
-                            <td class=" last">
-                              <form action="/directories/deletedirectory/<%= row.bdid %>" method="post">
-                                <button class="btn btn-outline-danger btn-sm btn-block">Delete</button>
-                             </form>
-                            </td>
                           </tr>
                        <% })}else{%>
                         <tr>
                             <div class="alert alert-warning alert-dismissible " role="alert">
-                                <button type="button" class="close btn btn-sm btn-block" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                                 </button>
-                                <strong>Error!</strong> No Directories Found!
+                                <strong>Error!</strong> No Contact Us Message Found!
                               </div>
                         </tr>
                        <% }%>
@@ -121,12 +120,18 @@
         <!-- /page content -->
 
         <!-- footer content -->
-     <%- include ('./partials/footer') %>
+      <%- include ('./partials/footer')%>
         <!-- /footer content -->
       </div>
     </div>
-
-    <!-- jQuery -->
+  
+    
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable();
+        });
+    </script>
+    <!-- jQuery -->- 
     <script src="../../../../../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
    <script src="../../../../../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

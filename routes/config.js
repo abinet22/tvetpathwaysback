@@ -30,7 +30,12 @@ if(!mainjobcategory){
       catname: mainjobcategory,
       is_active:'Yes'
     }
-    db.Category.create(catData).then(catdt =>{
+        db.Category.findOne({where:{catname:mainjobcategory}}).then(subcat =>{
+          if(subcat){
+ res.render('createmainsubjobcategory',{error_msg:'Error  job main category already saved',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+
+          }else{
+                db.Category.create(catData).then(catdt =>{
      if(catdt){
     db. Category.findAll({}).then(newcat =>{
         res.render('createmainsubjobcategory',{success_msg:'Successfully add main job category',user:req.user,jobmaincategory:newcat,jobsubcategory:jobsubcategory});
@@ -44,6 +49,13 @@ if(!mainjobcategory){
         res.render('createmainsubjobcategory',{error_msg:'Error while creating job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
 
     })
+          }
+        }).catch(err =>{
+              res.render('createmainsubjobcategory',{error_msg:'Error while finding job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+
+
+        })
+
   }
 
 });
@@ -60,7 +72,7 @@ router.post('/addsubjobcategory',ensureAuthenticated,async function(req,res){
           is_active:'Yes',
           subcatname:subcatname
         }
-        db.Subcategory.findOne({where:{subcatname:subcatname}}).thne(subcat =>{
+        db.Subcategory.findOne({where:{subcatname:subcatname}}).then(subcat =>{
             if(subcat){
                 res.render('createmainsubjobcategory',{error_msg:'Error Sub category already register with this name',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
                
@@ -149,4 +161,109 @@ router.post('/addnewscategroy',ensureAuthenticated,async function(req,res){
       }
 }); 
 
+router.post('/deletsubjobcategory/(:subcatid)',ensureAuthenticated,async function (req,res){
+    const jobmaincategory = await db.Category.findAll({})
+    const jobsubcategory  = await db.Subcategory.findAll({})
+ db.Subcategory.findOne({where:{subcatid:req.params.subcatid}}).then(subcat =>{
+  if(subcat){
+    db.Subcategory.destroy({where:{subcatid:req.params.subcatid}}).then(dt =>{
+        db.Subcategory.findAll({}).then(newsc =>{
+            res.render('createmainsubjobcategory',{success_msg:'Successfully delete job sub category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:newsc});
+       
+        }).catch(err =>{
+        res.render('createmainsubjobcategory',{error_msg:'Error while deleting job sub category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+               
+    })
+               
+    }).catch(err =>{
+        res.render('createmainsubjobcategory',{error_msg:'Error while deleting job sub category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+               
+    })
+  }else{
+    res.render('createmainsubjobcategory',{error_msg:'Error while finding job sub category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+       
+  }
+ }).catch(err =>{
+    res.render('createmainsubjobcategory',{error_msg:'Error while finding job sub category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+       
+ })
+});
+router.post('/deletemainjobcategory/(:maincatid)',ensureAuthenticated,async function (req,res){
+    const jobmaincategory = await db.Category.findAll({})
+    const jobsubcategory  = await db.Subcategory.findAll({})
+ db.Category.findOne({where:{catid:req.params.maincatid}}).then(subcat =>{
+  if(subcat){
+    db.Category.destroy({where:{catid:req.params.maincatid}}).then(dt =>{
+        db.Category.findAll({}).then(newcat =>{
+            res.render('createmainsubjobcategory',{success_msg:'Successfully delete job main category',user:req.user,jobmaincategory:newcat,jobsubcategory:jobsubcategory});
+       
+        }).catch(err =>{
+        res.render('createmainsubjobcategory',{error_msg:'Error while deleting job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+               
+    })        
+    }).catch(err =>{
+        res.render('createmainsubjobcategory',{error_msg:'Error while deleting job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+               
+    })
+  }else{
+    res.render('createmainsubjobcategory',{error_msg:'Error while finding job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+       
+  }
+ }).catch(err =>{
+    res.render('createmainsubjobcategory',{error_msg:'Error while finding job main category',user:req.user,jobmaincategory:jobmaincategory,jobsubcategory:jobsubcategory});
+       
+ })
+});
+router.post('/deletnewscategory/(:ncatid)',ensureAuthenticated,async function (req,res){
+    const newscategory = await db.NewsCategory.findAll({})
+    const newstag = await db.NewsTag.findAll({})
+ db.NewsCategory.findOne({where:{ncatid:req.params.ncatid}}).then(subcat =>{
+  if(subcat){
+    db.NewsCategory.destroy({where:{ncatid:req.params.ncatid}}).then(dt =>{
+        db.NewsCategory.findAll({}).then(newcat =>{
+            res.render('createnewstagorcategroy',{success_msg:'Successfully delete NEWS category',user:req.user,newscategory:newcat,newstag:newstag});
+
+        }).catch(err =>{
+            res.render('createnewstagorcategroy',{error_msg:'Error while new NEWS category',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+    })        
+    }).catch(err =>{
+        res.render('createnewstagorcategroy',{error_msg:'Error while deleting NEWS category',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+    })
+  }else{
+    res.render('createnewstagorcategroy',{error_msg:'Error cant find NEWS category with this ID',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+  }
+ }).catch(err =>{
+    res.render('createnewstagorcategroy',{error_msg:'Error while finding NEWS category',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+ })
+});
+router.post('/deletenewstagcategory/(:ncatid)',ensureAuthenticated,async function (req,res){
+    const newscategory = await db.NewsCategory.findAll({})
+    const newstag = await db.NewsTag.findAll({})
+ db.NewsTag.findOne({where:{ncatid:req.params.ncatid}}).then(subcat =>{
+  if(subcat){
+    db.NewsTag.destroy({where:{ncatid:req.params.ncatid}}).then(dt =>{
+        db.NewsTag.findAll({}).then(newcat =>{
+            res.render('createnewstagorcategroy',{success_msg:'Successfully delete NEWS tag',user:req.user,newscategory:newcat,newstag:newstag});
+
+        }).catch(err =>{
+            res.render('createnewstagorcategroy',{error_msg:'Error while new NEWS tag',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+    })        
+    }).catch(err =>{
+        res.render('createnewstagorcategroy',{error_msg:'Error while deleting NEWS tag',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+    })
+  }else{
+    res.render('createnewstagorcategroy',{error_msg:'Error cant find NEWS tag with this ID',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+  }
+ }).catch(err =>{
+    res.render('createnewstagorcategroy',{error_msg:'Error while finding NEWS tag',user:req.user,newscategory:newscategory,newstag:newstag});
+  
+ })
+});
 module.exports = router;

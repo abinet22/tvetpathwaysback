@@ -74,6 +74,8 @@ app.use('/ads', require('./routes/ads'));
 app.use('/blog', require('./routes/blog'));
 app.use('/directories', require('./routes/directories'));
 app.use('/config', require('./routes/config'));
+app.use('/subscription', require('./routes/subscription'));
+app.use('/application', require('./routes/application'));
 
 // initialize our app
 // {force: true}

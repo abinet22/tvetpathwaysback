@@ -287,7 +287,7 @@ ethiopianRegions.forEach(region => {
 																<option value="0">Select Job Sub Category</option>
 																<% if(jobsubcategory.length >0){%>
 																	<% jobsubcategory.forEach(function(row){%>
-																		<option value="<%= row.subcatid %>"><%= row.subcatname %></option>
+																		<option value="<%=row.subcatid%>"><%= row.subcatname %></option>
 															
 																<%	}) %>
 																<%}else {}%>

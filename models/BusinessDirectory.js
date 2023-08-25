@@ -12,7 +12,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             
         },
-   
+        topoccupations: {
+            type: DataTypes.JSON,
+            
+        },
+        ratting: {
+            type: DataTypes.STRING,
+            
+        },
+        region: {
+            type: DataTypes.STRING,
+            
+        },
         lon: {
             type: DataTypes.STRING,
             

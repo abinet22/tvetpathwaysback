@@ -34,7 +34,8 @@
 
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<link href="../../../../build/css/custom.min.css" rel="stylesheet">
 </head>
 
@@ -108,18 +109,8 @@ margin-top: 75px;
 												</div>
 											</div>
 									
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bplace">Business Place/Address:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="bplace" name="bplace" class="form-control">
-												</div>
-											</div>
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bcontact">Contact Info:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="bcontact" name="bcontact" class="form-control">
-												</div>
-											</div>
+						
+											
 											<div class="item form-group">
 												<label class="col-form-label col-md-3 col-sm-3 label-align" for="boverview">Business Overview Info:</label>
 												<div class="col-md-6 col-sm-6">
@@ -133,7 +124,7 @@ margin-top: 75px;
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bservice">Service Info:</label>
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bservice">Read More Info:</label>
 												<div class="col-md-6 col-sm-6">
 													<textarea type="text" id="bservice" name="bservice" class="form-control"></textarea>
 												</div>
@@ -144,7 +135,93 @@ margin-top: 75px;
 													<input type="text" id="bwewurl" name="bwewurl" class="form-control">
 												</div>
 											</div>
-									
+											<div class="row">
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Region:</label>
+														<div class="col-md-6 col-sm-6">
+															<select class="form-control" name="region" id="region">
+																<option value="0">Select Region</option>
+															</select></div>
+													</div>
+												</div>
+												<script>
+													// List of Ethiopian regions
+const ethiopianRegions = [
+    'Addis Ababa',
+    'Afar',
+    'Amhara',
+    'Benishangul-Gumuz',
+    'Dire Dawa',
+    'Gambela',
+    'Harari',
+    'Oromia',
+    'Sidama',
+    'SNNPR',
+    'Somali',
+    'Tigray'
+];
+
+// Get the select element by its ID
+const select = document.getElementById('region');
+
+// Populate the select element with options
+ethiopianRegions.forEach(region => {
+    const option = document.createElement('option');
+    option.value = region;
+    option.textContent = region;
+    select.appendChild(option);
+});
+
+												</script>
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Place of work:</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="bplace" name="bplace" class="form-control">
+														</div>
+													</div>
+												</div>
+											   </div>
+											   <div class="row">
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Top Occupations:<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6 ">
+															<select class="form-control js-example-basic-multiple" name="topoccupations" id="topoccupations" multiple="multiple">
+																<option value="0">Select Occupations</option>
+																
+																<% subcategory.forEach(function (row){%>
+																	<option value="<%= row.subcatname %>"><%= row.subcatname %></option>
+																<%})%>
+																
+															</select></div>
+													</div>
+													
+												</div>
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Rating:<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6 ">
+															<select class="form-control" name="ratting" id="ratting">
+																<option value="0">Select Rating</option>
+																<option value="Low">Low (Lower Than 60)</option>
+																<option value="Medium">Medium (60 to 70)</option>
+																<option value="Good">Good (Greater Than 70)</option>
+															
+															</select></div>
+													</div>
+													
+												</div>
+											   </div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bcontact">Contact Info:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="bcontact" name="bcontact" class="form-control">
+												</div>
+											</div>
 											<div class="item form-group">
 												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bworkinghours">Working Hours:</label>
 												<div class="col-md-6 col-sm-6">
@@ -174,7 +251,7 @@ margin-top: 75px;
 									
 											 
 											<div class="col-md-8 offset-md-2">
-												<label class="mb-5">Job Location</label>
+												<label class="mb-5">Map Location</label>
 											
 												<input type="hidden" name="latitude" id="latitude">
 												<input type="hidden" name="logtiude" id="logtiude">
@@ -265,6 +342,12 @@ margin-top: 75px;
 	 
 	   $('textarea#bservice').summernote('pasteHTML', value);
    
+	  </script>
+
+	  <script>
+		$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
 	  </script>
   <script>
 	$(document).ready(function() {
