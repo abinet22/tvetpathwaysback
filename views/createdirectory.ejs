@@ -101,9 +101,11 @@ margin-top: 75px;
 										
 										
 											<div class="">
-																	
+									
+												<label class="col-form-label  label-align" for="directorycategory">General Info:<span class="required">*</span>
+												</label>								
 											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bname">Business Name:</label>
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bname">Institution Name:</label>
 												<div class="col-md-6 col-sm-6">
 													<input type="text" id="bname" name="bname" class="form-control">
 												</div>
@@ -112,7 +114,7 @@ margin-top: 75px;
 						
 											
 											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="boverview">Business Overview Info:</label>
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="boverview">Institution Overview Info:</label>
 												<div class="col-md-6 col-sm-6">
 													<textarea type="text" id="boverview" name="boverview" class="form-control"></textarea>
 												</div>
@@ -124,17 +126,61 @@ margin-top: 75px;
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bservice">Read More Info:</label>
-												<div class="col-md-6 col-sm-6">
-													<textarea type="text" id="bservice" name="bservice" class="form-control"></textarea>
-												</div>
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Programs Offered:<span class="required">*</span>
+												</label>
+												<div class="col-md-6 col-sm-6 ">
+													<select class="form-control js-example-basic-multiple" name="topoccupations" id="topoccupations" multiple="multiple">
+														<option value="0">Select Programs Offered</option>
+														
+														<% subcategory.forEach(function (row){%>
+															<option value="<%= row.subcatname %>"><%= row.subcatname %></option>
+														<%})%>
+														
+													</select></div>
 											</div>
 											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bwewurl">Website URL:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="bwewurl" name="bwewurl" class="form-control">
-												</div>
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Certificate Level Offered:<span class="required">*</span>
+												</label>
+												<div class="col-md-6 col-sm-6 ">
+													<select class="form-control js-example-basic-multiple" name="certificateoffered" id="certificateoffered" multiple="multiple">
+														<option value="0">Certificate Level Offered</option>
+														<option value="Level_1">Certificate Level 1</option>
+														<option value="Level_2">Certificate Level 2</option>
+														<option value="Level_3">Certificate Level 3</option>
+														<option value="Level_4">Certificate Level 4</option>
+														<option value="Level_5">Certificate Level 5</option>
+														
+														
+													</select></div>
 											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">TVET Type:<span class="required">*</span>
+												</label>
+												<div class="col-md-6 col-sm-6 ">
+													<select class="form-control" name="directorycategory" id="directorycategory">
+														<option value="0">Select TVET Type</option>
+														<option value="Formal_TVET_College">Formal TVET College</option>
+														<option value="InFormal_TVET_College">Government TVET College</option>
+														<option value="Public_TVET_College">Public TVET College</option>
+														<option value="Private_TVET_College">Private TVET College</option>
+													
+														
+													</select></div>
+											</div>
+											<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Rating:<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6 ">
+															<select class="form-control" name="ratting" id="ratting">
+																<option value="0">Select Rating</option>
+																<option value="Low">Low (Lower Than 60)</option>
+																<option value="Medium">Medium (60 to 70)</option>
+																<option value="Good">Good (Greater Than 70)</option>
+															
+															</select></div>
+													</div>
+											<label class="col-form-label  label-align" for="directorycategory">Address:<span class="required">*</span>
+											</label>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="item form-group">
@@ -186,64 +232,47 @@ ethiopianRegions.forEach(region => {
 											   <div class="row">
 												<div class="col-md-6">
 													<div class="item form-group">
-														<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Top Occupations:<span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6 ">
-															<select class="form-control js-example-basic-multiple" name="topoccupations" id="topoccupations" multiple="multiple">
-																<option value="0">Select Occupations</option>
-																
-																<% subcategory.forEach(function (row){%>
-																	<option value="<%= row.subcatname %>"><%= row.subcatname %></option>
-																<%})%>
-																
-															</select></div>
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="bwewurl">Website URL:</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="bwewurl" name="bwewurl" class="form-control">
+														</div>
 													</div>
 													
 												</div>
 												<div class="col-md-6">
-													<div class="item form-group">
-														<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Rating:<span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6 ">
-															<select class="form-control" name="ratting" id="ratting">
-																<option value="0">Select Rating</option>
-																<option value="Low">Low (Lower Than 60)</option>
-																<option value="Medium">Medium (60 to 70)</option>
-																<option value="Good">Good (Greater Than 70)</option>
-															
-															</select></div>
-													</div>
+													
 													
 												</div>
 											   </div>
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bcontact">Contact Info:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="bcontact" name="bcontact" class="form-control">
+											   <div class="row">
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="bcontact">Contact Info:</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="bcontact" name="bcontact" class="form-control">
+														</div>
+													</div>
 												</div>
-											</div>
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bworkinghours">Working Hours:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="bworkinghours" name="bworkinghours" class="form-control">
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="bworkinghours">Working Hours:</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="bworkinghours" name="bworkinghours" class="form-control">
+														</div>
+													</div>
 												</div>
-											</div>
+											   </div>
+											
+										
 									
 											
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="directorycategory">Directory Category:<span class="required">*</span>
-												</label>
-												<div class="col-md-6 col-sm-6 ">
-													<select class="form-control" name="directorycategory" id="directorycategory">
-														<option value="0">Select Category</option>
-														<option value="tvet">TVET College</option>
-														<option value="govt">Government Agencies</option>
-														<option value="nongovt">Non Gevernmental Org.</option>
-														
-														
-													</select></div>
-											</div>
 											
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="bservice">Read More Info(Application Process And Others):</label>
+												<div class="col-md-6 col-sm-6">
+													<textarea type="text" id="bservice" name="bservice" class="form-control"></textarea>
+												</div>
+											</div>
 											</div>
 										
 										

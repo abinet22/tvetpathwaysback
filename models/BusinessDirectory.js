@@ -58,6 +58,10 @@ module.exports = (sequelize, DataTypes) => {
         directorycategory: {
             type: DataTypes.STRING,
         },
+        certificateoffered:{
+            type: DataTypes.JSON,
+            
+        }
     });
 
   

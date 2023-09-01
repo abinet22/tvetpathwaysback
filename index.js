@@ -76,6 +76,7 @@ app.use('/directories', require('./routes/directories'));
 app.use('/config', require('./routes/config'));
 app.use('/subscription', require('./routes/subscription'));
 app.use('/application', require('./routes/application'));
+app.use('/employer', require('./routes/employer'));
 
 // initialize our app
 // {force: true}

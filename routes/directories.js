@@ -18,7 +18,7 @@ res.render('directorylist',{user:req.user,directory:directory,subcategory:subcat
 });
 router.post('/createdirectories', ensureAuthenticated, async (req, res) =>{
     const {bname,bplace,bcontact,boverview,baboutus,bservice,bwewurl,bworkinghours,directorycategory,latitude,logtiude,
-      topoccupations,ratting,region
+      topoccupations,ratting,region,certificateoffered
     } =req.body;
     const subcategory = await db.Subcategory.findAll({})
      let errors =[];
@@ -26,7 +26,7 @@ router.post('/createdirectories', ensureAuthenticated, async (req, res) =>{
        errors.push({msg:'Please select directory type'}) 
      }
   
-     if(!topoccupations ||!ratting ||!region || !bname ||!bplace ||!bcontact ||!boverview ||!latitude ||!logtiude ||!baboutus||!bservice ||!bwewurl||!bworkinghours||!directorycategory){
+     if(!certificateoffered ||!topoccupations ||!ratting ||!region || !bname ||!bplace ||!bcontact ||!boverview ||!latitude ||!logtiude ||!baboutus||!bservice ||!bwewurl||!bworkinghours||!directorycategory){
        errors.push({msg:'Please enter all required fields'}) 
      }
      if(errors.length>0){
@@ -47,7 +47,8 @@ router.post('/createdirectories', ensureAuthenticated, async (req, res) =>{
         bcontact:bcontact,
         bwewurl: bwewurl,
         bworkinghours: bworkinghours,
-        directorycategory: directorycategory
+        directorycategory: directorycategory,
+        certificateoffered:certificateoffered
        }
        db.BusinessDirectory.create(dirData).then(usernew =>{
         if(usernew){

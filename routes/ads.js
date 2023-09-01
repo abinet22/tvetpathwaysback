@@ -18,7 +18,7 @@ const ads = await db.ADs.findAll({})
 res.render('adslist',{user:req.user,ads:ads});
 });
 router.post('/createads', ensureAuthenticated,Newsphoto.single('adsphoto') ,async function(req, res){
-    const {adsdetail,adstitle,adsurl,readmore} =req.body;
+    const {adsdetail,adstitle,adsurl,readmore,providercontact,providername,datefrom,dateto} =req.body;
    
      let errors =[];
    
@@ -26,7 +26,7 @@ router.post('/createads', ensureAuthenticated,Newsphoto.single('adsphoto') ,asyn
       errors.push({msg:'Please add Ads Image file '}) 
     }
   
-     if(!adsdetail ||!adstitle ||!adsurl ||!readmore){
+     if(!adsdetail ||!adstitle ||!adsurl ||!readmore ||!providername ||!providercontact ||!datefrom ||!dateto){
        errors.push({msg:'Please enter all required fields'}) 
      }
      if(errors.length>0){
@@ -45,11 +45,13 @@ router.post('/createads', ensureAuthenticated,Newsphoto.single('adsphoto') ,asyn
   
       
       adsdetail:adsdetail,
-  
+      providercontact:providercontact,
+      providername:providername,
       adsurl: adsurl,
       readmore: readmore,
       adscount: 0,
-       
+      datefrom:datefrom,
+    dateto:dateto,
         isactive: 'Yes',
        
        }

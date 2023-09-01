@@ -147,7 +147,7 @@ margin-top: 75px;
 										</div>
 								
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Job Detail:</label>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Job Description:</label>
 											<div class="col-md-6 col-sm-6">
 												<textarea type="text" id="jobdetail" name="jobdetail" class="form-control"></textarea>
 											</div>
@@ -211,7 +211,70 @@ margin-top: 75px;
 											</div>
 										
 									
-                                               <div class="row">
+                                         
+											
+											<div class="row">
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Job Sector:</label>
+														<div class="col-md-6 col-sm-6">
+															<select class="form-control" name="maincategory" id="maincategory">
+																<option value="0">Select Job Sector</option>
+																<% if(jobmaincategory.length >0){%>
+																	<% jobmaincategory.forEach(function(row){%>
+																		<option value="<%= row.catid %>"><%= row.catname %></option>
+															
+																<%	}) %>
+																<%}else {}%>
+															</select></div>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="item form-group">
+														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Occupation:</label>
+														<div class="col-md-6 col-sm-6">
+															<select class="form-control" name="subcategory" id="subcategory">
+																<option value="0">Select Job Occupation</option>
+																<% if(jobsubcategory.length >0){%>
+																	<% jobsubcategory.forEach(function(row){%>
+																		<option value="<%=row.subcatid%>"><%= row.subcatname %></option>
+															
+																<%	}) %>
+																<%}else {}%>
+															
+															</select></div>
+													</div>
+												</div>
+											</div>
+											
+											
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="Salary">Salary:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="text" id="salary" name="salary" class="form-control">
+												</div>
+											</div>
+										
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Application  Expiry Date:</label>
+												<div class="col-md-6 col-sm-6">
+													<input type="date" id="deadline" name="deadline" class="form-control">
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="readmore">More Info(<code>How to apply,skills required and qualification</code>):</label>
+												<div class="col-md-6 col-sm-6">
+													<textarea type="text" id="readmore" name="readmore" class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" for="jobby">Company(Job By):</label>
+												<div class="col-md-6 col-sm-6">
+												
+													<input type="text" id="jobby" name="jobby" class="form-control">
+												</div>
+											</div>
+											<div class="row">
 												<div class="col-md-6">
 													<div class="item form-group">
 														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Region:</label>
@@ -262,68 +325,6 @@ ethiopianRegions.forEach(region => {
 												</div>
 											   </div>
 											
-											
-											<div class="row">
-												<div class="col-md-6">
-													<div class="item form-group">
-														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Job Main Category:</label>
-														<div class="col-md-6 col-sm-6">
-															<select class="form-control" name="maincategory" id="maincategory">
-																<option value="0">Select Job Main Category</option>
-																<% if(jobmaincategory.length >0){%>
-																	<% jobmaincategory.forEach(function(row){%>
-																		<option value="<%= row.catid %>"><%= row.catname %></option>
-															
-																<%	}) %>
-																<%}else {}%>
-															</select></div>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="item form-group">
-														<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Job Sub Category:</label>
-														<div class="col-md-6 col-sm-6">
-															<select class="form-control" name="subcategory" id="subcategory">
-																<option value="0">Select Job Sub Category</option>
-																<% if(jobsubcategory.length >0){%>
-																	<% jobsubcategory.forEach(function(row){%>
-																		<option value="<%=row.subcatid%>"><%= row.subcatname %></option>
-															
-																<%	}) %>
-																<%}else {}%>
-															
-															</select></div>
-													</div>
-												</div>
-											</div>
-											
-											
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="Salary">Salary:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="text" id="salary" name="salary" class="form-control">
-												</div>
-											</div>
-										
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="adsdetail">Application  Deadline:</label>
-												<div class="col-md-6 col-sm-6">
-													<input type="date" id="deadline" name="deadline" class="form-control">
-												</div>
-											</div>
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="readmore">More Info(<code>How to apply and other info</code>):</label>
-												<div class="col-md-6 col-sm-6">
-													<textarea type="text" id="readmore" name="readmore" class="form-control"></textarea>
-												</div>
-											</div>
-											<div class="item form-group">
-												<label class="col-form-label col-md-3 col-sm-3 label-align" for="jobby">Job By:</label>
-												<div class="col-md-6 col-sm-6">
-												
-													<input type="text" id="jobby" name="jobby" class="form-control">
-												</div>
-											</div>
 										  <div class="item form-group">
 											<label></label>
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="readmore">Company logo:</label>
@@ -381,7 +382,7 @@ ethiopianRegions.forEach(region => {
 										  </div>
 										 
 										  <div class="col-md-8 offset-md-2">
-											<label class="mb-5">Job Location</label>
+											<label class="mb-5">Company(Job) Location</label>
 										
 											<input type="hidden" name="lon" id="lon">
 											<input type="hidden" name="lat" id="lat">
